@@ -9,6 +9,8 @@ from login.models import *
 from django.contrib.auth import *
 from login.forms import *
 
+@login_required(login_url = '/login/')
+
 def seats(request):
         c={}
         c.update(csrf(request))
@@ -25,18 +27,21 @@ def seats(request):
         c['price1']=price1
         c['price2']=price2
         return render(request,'seats.html',c)
+
+@login_required(login_url = '/login/')
+
 def ticket(request):
 	c={}
 	c.update(csrf(request))
 	sid = request.session['sid']
 	show = Show.objects.get(show_id = sid)
 	show.seat = request.POST.get('chart')
-	#show.save()
+	show.save()
+	price = request.POST.get('total')
+	count = request.POST.get('count')
 	user = request.user.username
 	puser = Puser.objects.filter(user_id = user)
-	ticket = Ticket(user_id = puser[0], show_id = show)
-	#ticket.save()
-	print(request.POST.get('total'))
-	print(request.POST.get('count'))
+	ticket = Ticket(user_id = puser[0], show_id = show, seat = int(count), price = int(price))
+	ticket.save()
 	return render(request,'seats.html',c)
 	

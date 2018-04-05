@@ -2,7 +2,7 @@
 <html>
 {% load static %}
 <head>
-	<title></title>
+	<title>Movie</title>
 	<link rel="stylesheet" href={% static "css/c_home/materialize.css" %} type="text/css" media="all" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src={% static "js/jquery-3.3.1.min.js" %}></script>
@@ -58,20 +58,26 @@
 		</ul>
 	</div>
     <div id="t2" class="col s12">
-	<form action="/book/" method="POST">
-	{% csrf_token %}
-		<div class="input-field col s12">
-    <select name="sid">
-      <option value="" disabled selected>Select Show for {{ movie_name }}</option>
-	  {% for i in show %}
-      <option value="{{ i.show_id }}">{{ i.time }}</option>
-	  {% endfor %}
-    </select>
-    <div class="input-field col s6">
-				<input type="submit" value="Submit" class="waves-effect waves-light btn">
+		<form action="/book/" method="POST">
+		{% csrf_token %}
+			<div class="input-field col s8">
+				<select name="sid">
+					<option value="" disabled selected>Select Show for {{ movie_name }}</option>
+					{% for i in show %}
+						<option value="{{ i.show_id }}">{{ i.time }}</option>
+					{% endfor %}
+				</select>
+				<select name="fid">
+					<option value="" disabled selected>Select offer for {{ movie_name }}</option>
+					{% for i in offer %}
+						<option value="{{ i.show_id }}">{{ i.offer_name }}</option>
+					{% endfor %}
+				</select>
+				<div class="input-field col s6">
+					<input type="submit" value="Submit" class="waves-effect waves-light btn">
 				</div>
-  </div>
-	</form>
+			</div>
+		</form>
 	</div>
     <div id="t3" class="col s12">Test 3</div>
   </div>

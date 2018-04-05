@@ -9,6 +9,9 @@ from login.models import *
 from django.contrib.auth import *
 from login.forms import *
 from django.contrib.auth.forms import PasswordChangeForm
+
+@login_required(login_url = '/login/')
+
 def home(request):
     c={}
     if request.user.is_authenticated:
@@ -34,6 +37,9 @@ def home(request):
         return render(request,'cinema-home.html',c)
     else:
         return HttpResponseRedirect('/login/invalidlogin')
+
+@login_required(login_url = '/login/')
+
 def about(request):
     c={}
     c.update(csrf(request))
@@ -41,6 +47,9 @@ def about(request):
         return render(request,'about_cin.html',c)
     else:
         return HttpResponseRedirect('/login/invalidlogin')
+    
+@login_required(login_url = '/login/')
+
 def contact(request):
     c={}
     c.update(csrf(request))
@@ -48,6 +57,9 @@ def contact(request):
         return render(request,'contact_cin.html',c)
     else:
         return HttpResponseRedirect('/login/invalidlogin')
+
+@login_required(login_url = '/login/')
+
 def profile(request):
     c={}
     c.update(csrf(request))
@@ -73,10 +85,16 @@ def profile(request):
         return render(request,'profile2.html',c)
     else:
         return HttpResponseRedirect('/login/invalidlogin')
+
+@login_required(login_url = '/login/')
+
 def editPassword(request):
     c = {}
     c.update(csrf(request))
     return render(request,'update_password_cin.html',c)
+
+@login_required(login_url = '/login/')
+
 def editProfile(request):
     c={}
     c.update(csrf(request))
@@ -98,14 +116,23 @@ def editProfile(request):
         return render(request,'edit_profile_cin.html',c)
     else:
         return HttpResponseRedirect('/login/invalidlogin')
+
+@login_required(login_url = '/login/')
+
 def addNewMovie(request):
     c = {}
     c.update(csrf(request))
     return render(request,'add_new_movie.html',c)
+
+@login_required(login_url = '/login/')
+
 def addNewOffer(request):
     c = {}
     c.update(csrf(request))
     return render(request,'add_new_offer.html',c)
+
+@login_required(login_url = '/login/')
+
 def addNewShow(request):
     c = {}
     c.update(csrf(request))
@@ -118,6 +145,9 @@ def addNewShow(request):
     c['show'] = show
     c['mname'] = mname
     return render(request,'add_new_show.html',c)
+
+@login_required(login_url = '/login/')
+
 def add(request):
     c = {}
     c.update(csrf(request))
@@ -128,13 +158,16 @@ def add(request):
         cinema = user.username
         cin = Cinema.objects.filter(cinema_id = cinema)
         if int(cin.count())>0:
-            movie = Movie(cinema_id=cin[0],movie_name=name,movie_details=details)
+            movie = Movie(cinema_id=cin[0],movie_name=name,movie_details=details,rating = 5)
             movie.save()
         else:
             HttpResponseRedirect('/CinemaAdmin/addNewMovie/')
     else:
         HttpResponseRedirect('/CinemaAdmin/addNewMovie/')
     return HttpResponseRedirect('/CinemaAdmin/home')
+
+@login_required(login_url = '/login/')
+
 def add2(request):
     c = {}
     c.update(csrf(request))
@@ -148,6 +181,9 @@ def add2(request):
             offer = Offers(cinema_id=cin[0],offer_name=name,offer_details=details)
             offer.save()
     return HttpResponseRedirect('/CinemaAdmin/home')
+
+@login_required(login_url = '/login/')
+
 def add3(request):
     c = {}
     c.update(csrf(request))
@@ -159,7 +195,7 @@ def add3(request):
     cinema = Cinema.objects.filter(cinema_id = c_id)
     movie = Movie.objects.filter(movie_id = m_id)
     if int(movie.count())>0:
-        show = Show(cinema_id = cinema[0],movie_id = movie[0], time = time, price_ex = pex, price_pr = ppr)
+        show = Show(cinema_id = cinema[0],movie_id = movie[0], time = time, price_ex = pex, price_pr = ppr, seat='0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')
         show.save()
         print('added')
     else:
