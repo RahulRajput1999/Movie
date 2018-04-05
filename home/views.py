@@ -22,14 +22,28 @@ def location(request):
 
 @login_required(login_url = '/login/')
 
+def cinema(request):
+    c = {}
+    c.update(csrf(request))
+    cty = {}
+    city_ob = City.objects.all()
+    for ci in city_ob:
+        cin_list = Cinema.objects.filter(city = ci.city)
+        cty[str(ci.city)] = cin_list
+    c['city'] = cty
+    c['test'] = city_ob
+    return render(request,'cinema.html',c)
+
+@login_required(login_url = '/login/')
+
 def home(request):
     c={}
     movies = {}
     cid = request.GET.get('cid','')
-    if cid is not None:
+    if (cid!=''):
         request.session['cinema_id'] = cid
-        cin_id = request.session['cinema_id']
-        mov = Movie.objects.filter(cinema_id = cin_id)
+    cin_id = request.session['cinema_id']
+    mov = Movie.objects.filter(cinema_id = cin_id)
     for i in mov:
         l = [i.movie_name,i.movie_details]
         movies[i.movie_id] = l
