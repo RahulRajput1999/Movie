@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+<title>User Profile</title>
+</head>
+<link rel="stylesheet" href={% static "css/c_home/materialize.css" %} type="text/css" media="all" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src={% static "js/c_home/materialize.min.js" %}></script>
+<body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#!" class="brand-logo">&nbsp User Profile</a>
+			<ul class="right hide-on-med-and-down">
+				<li class="waves-effect waves-light"><a href="/home/">Home</a></li>
+				<li class="waves-effect waves-light"><a href="/home/movieandevents/">Movies & Events</a></li>
+				<li class="active waves-effect waves-light"><a href="/home/profile/">Profile</a></li>
+				<li class="waves-effect waves-light"><a href="/home/contact/">Contact Us</a></li>
+				<li class="waves-effect waves-light"><a href="/home/about/">About Us</a></li>
+				<li class="waves-effect waves-light"><a href="/home/location/">Cinema</a></li>
+				<li class="waves-effect waves-light"><a href="/login/logout/">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col s12">
+			<div class="card">
+				<span class="card-title">
+				<h3><br>&nbsp <img width="80" height="80" src={% static "images/profile/profile.png" %}>&nbsp User Profile </h3>
+					<div class="card-content">
+						<ul class="collection">
+							<li class="collection-item avatar">
+								<table>
+									<tr>
+										<td width="100"><img src={% static "images/profile/userid.png" %}></td>
+										<td><span class="title"><h5>User ID:</h5></span>
+											<p>{{ user_name }}</p></td>
+									</tr>
+								</table>
+							</li>
+							<li class="collection-item avatar">
+								<table>
+									<tr>
+										<td width="100"><img src={% static "images/profile/name.png" %}></td>
+										<td><span class="title"><h5>Full Name:</h5></span>
+											<p>{{ full_name }}</p></td>
+									</tr>
+								</table>
+							</li>
+							<li class="collection-item avatar">
+								<table>
+									<tr>
+										<td width="100"><img src={% static "images/profile/email.png" %}></td>
+										<td><span class="title"><h5>E-Mail Address:</h5></span>
+											<p>{{ email }}</p></td>
+									</tr>
+								</table>
+							</li>
+							<li class="collection-item avatar">
+								<table>
+									<tr>
+										<td width="100"><img src={% static "images/profile/bday.png" %}></td>
+										<td><span class="title"><h5>Birthdate:</h5></span>
+											<p>{{ bdate }}</p></td>
+									</tr>
+								</table>
+							</li>
+							<li class="collection-item avatar">
+								<table>
+									<tr>
+										<td width="100"><img src={% static "images/profile/call.png" %}></td>
+										<td><span class="title"><h5>Phone no.:</h5></span>
+											<p>{{ phoneno }}</p></td>
+									</tr>
+								</table>
+							</li>
+						</ul>
+						<a href="/home/editProfile/" class="waves-effect waves-light btn">Edit
+							Profile</a> <a href="/home/editPassword/"
+							class="waves-effect waves-light btn">Edit Passwrd</a>
+					</div> </span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
