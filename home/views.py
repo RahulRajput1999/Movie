@@ -26,10 +26,10 @@ def home(request):
     c={}
     movies = {}
     cid = request.GET.get('cid','')
-    if (cid!=''):
+    if cid is not None:
         request.session['cinema_id'] = cid
-    cin_id = request.session['cinema_id']
-    mov = Movie.objects.filter(cinema_id = cin_id)
+        cin_id = request.session['cinema_id']
+        mov = Movie.objects.filter(cinema_id = cin_id)
     for i in mov:
         l = [i.movie_name,i.movie_details]
         movies[i.movie_id] = l

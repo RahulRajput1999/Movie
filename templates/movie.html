@@ -23,8 +23,8 @@
 			<a href="#!" class="brand-logo">&nbsp Home</a>
 			<ul class="right hide-on-med-and-down">
 				<li class="waves-effect waves-light"><a href="/home/">Home</a></li>
-				<li class="waves-effect waves-light"><a href="/home/movieandevents/">Movies & Events</a></li>
 				<li class="waves-effect waves-light"><a href="/home/profile/">Profile</a></li>
+				<li class="waves-effect waves-light"><a href="/book/bookings/">Bookings</a></li>
 				<li class="waves-effect waves-light"><a href="/home/contact/">Contact Us</a></li>
 				<li class="waves-effect waves-light"><a href="/home/about/">About Us</a></li>
 				<li class="waves-effect waves-light"><a href="/home/location/">Cinema</a></li>				
@@ -60,6 +60,7 @@
     <div id="t2" class="col s12">
 		<form action="/book/" method="POST">
 		{% csrf_token %}
+			<input type ="hidden" name="movie_name" value="{{ movie_name }}" >
 			<div class="input-field col s8">
 				<select name="sid">
 					<option value="" disabled selected>Select Show for {{ movie_name }}</option>
@@ -70,7 +71,7 @@
 				<select name="fid">
 					<option value="" disabled selected>Select offer for {{ movie_name }}</option>
 					{% for i in offer %}
-						<option value="{{ i.show_id }}">{{ i.offer_name }}</option>
+						<option value="{{ i.offer_id }}">{{ i.offer_name }}</option>
 					{% endfor %}
 				</select>
 				<div class="input-field col s6">

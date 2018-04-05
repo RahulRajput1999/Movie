@@ -21,8 +21,9 @@ class Ticket(models.Model):
 	ticket_id=models.AutoField(primary_key='true')
 	seat = models.IntegerField()
 	price = models.IntegerField()
-	user_id=models.ForeignKey('Puser',on_delete='true')
-	show_id=models.ForeignKey('Show',on_delete='true')
+	offer_id = models.ForeignKey('Offers',on_delete='true')
+	user_id = models.ForeignKey('Puser',on_delete='true')
+	show_id = models.ForeignKey('Show',on_delete='true')
 
 class Movie(models.Model):
 	movie_id=models.AutoField(primary_key='true')
