@@ -12,7 +12,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 @login_required(login_url = '/login/')
 
-def home(request):
+def home(request): #home admin panel for cinema admin...
     c={}
     if request.user.is_authenticated:
         id = request.user.id
@@ -40,7 +40,7 @@ def home(request):
 
 @login_required(login_url = '/login/')
 
-def about(request):
+def about(request): #view for about page of site...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -50,7 +50,7 @@ def about(request):
     
 @login_required(login_url = '/login/')
 
-def contact(request):
+def contact(request): #view for contact page of site...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -60,7 +60,7 @@ def contact(request):
 
 @login_required(login_url = '/login/')
 
-def profile(request):
+def profile(request): #view to display profile details of cinema...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -88,14 +88,14 @@ def profile(request):
 
 @login_required(login_url = '/login/')
 
-def editPassword(request):
+def editPassword(request): #view for password editing page...
     c = {}
     c.update(csrf(request))
     return render(request,'update_password_cin.html',c)
 
 @login_required(login_url = '/login/')
 
-def editProfile(request):
+def editProfile(request): #view for profile editing page...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -119,21 +119,21 @@ def editProfile(request):
 
 @login_required(login_url = '/login/')
 
-def addNewMovie(request):
+def addNewMovie(request): #view for new movie addition page...
     c = {}
     c.update(csrf(request))
     return render(request,'add_new_movie.html',c)
 
 @login_required(login_url = '/login/')
 
-def addNewOffer(request):
+def addNewOffer(request): #view for new offer addition page...
     c = {}
     c.update(csrf(request))
     return render(request,'add_new_offer.html',c)
 
 @login_required(login_url = '/login/')
 
-def addNewShow(request):
+def addNewShow(request): #view for new show  addition page...
     c = {}
     c.update(csrf(request))
     mid = request.GET.get('mid','')
@@ -148,7 +148,7 @@ def addNewShow(request):
 
 @login_required(login_url = '/login/')
 
-def add(request):
+def add(request): #view for adding movie details in to the database...
     c = {}
     c.update(csrf(request))
     name = request.POST.get('name','')
@@ -168,7 +168,7 @@ def add(request):
 
 @login_required(login_url = '/login/')
 
-def add2(request):
+def add2(request): #view for adding offer details in to the database...
     c = {}
     c.update(csrf(request))
     user = User.objects.get(id = request.user.id)
@@ -184,7 +184,7 @@ def add2(request):
 
 @login_required(login_url = '/login/')
 
-def add3(request):
+def add3(request): #view for adding show details in to the database...
     c = {}
     c.update(csrf(request))
     time = request.POST.get('time','')

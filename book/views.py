@@ -11,7 +11,7 @@ from login.forms import *
 
 @login_required(login_url = '/login/')
 
-def seats(request):
+def seats(request): #to show the seat arrengments...
         c={}
         c.update(csrf(request))
         sid = request.POST.get('sid','')
@@ -36,7 +36,7 @@ def seats(request):
 
 @login_required(login_url = '/login/')
 
-def bookings(request):
+def bookings(request): #to show all the bookings done by user...
         c = {}
         c.update(csrf(request))
         user = User.objects.get(id = request.user.id)
@@ -44,7 +44,9 @@ def bookings(request):
         c['ticket'] = ticket
         return render(request,'bookings.html',c)
 
-def book(request):
+@login_required(login_url = '/login/')
+
+def book(request): #to store the booking data in to database...
 	c={}
 	c.update(csrf(request))
 	sid = request.session['sid']
@@ -66,8 +68,8 @@ def book(request):
 	print(request.POST.get('total'))
 	print(request.POST.get('count'))
 	return HttpResponseRedirect('/book/ticket/')
-
-def ticket(request):
+@login_required(login_url = '/login/')
+def ticket(request): #to display the ticket details after successfull booking...
         c = {}
         c.update(csrf(request))
         ticket_id = request.session['ticket_id']

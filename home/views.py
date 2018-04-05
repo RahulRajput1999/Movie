@@ -8,7 +8,7 @@ from login.models import *
 from django.contrib.auth import *
 from django.contrib.auth.models import User
 @login_required(login_url = '/login/')
-def location(request):
+def location(request): #view for getting users location...
     c = {}
     c.update(csrf(request))
     cty = {}
@@ -22,7 +22,7 @@ def location(request):
 
 @login_required(login_url = '/login/')
 
-def cinema(request):
+def cinema(request): #view for changing the location...
     c = {}
     c.update(csrf(request))
     cty = {}
@@ -36,7 +36,7 @@ def cinema(request):
 
 @login_required(login_url = '/login/')
 
-def home(request):
+def home(request): #home page view for user...
     c={}
     movies = {}
     cid = request.GET.get('cid','')
@@ -61,7 +61,7 @@ def home(request):
 
 @login_required(login_url = '/login/')
 
-def about(request):
+def about(request): #view for about page...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -71,7 +71,7 @@ def about(request):
 
 @login_required(login_url = '/login/')
 
-def contact(request):
+def contact(request): #view for contact page
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -81,7 +81,7 @@ def contact(request):
 
 @login_required(login_url = '/login/')
 
-def profile(request):
+def profile(request): #view to display user profile...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -109,14 +109,14 @@ def profile(request):
 
 @login_required(login_url = '/login/')
 
-def editPassword(request):
+def editPassword(request): #view for password edit page...
     c = {}
     c.update(csrf(request))
     return render(request,'update_password.html',c)
     
 @login_required(login_url = '/login/')
 
-def editProfile(request):
+def editProfile(request): #view for profile edit page...
     c={}
     c.update(csrf(request))
     if request.user.is_authenticated:
@@ -146,17 +146,7 @@ def editProfile(request):
 
 @login_required(login_url = '/login/')
 
-def movieandevent(request):
-    c={}
-    c.update(csrf(request))
-    if request.user.is_authenticated:
-        return render(request,'movie_event.html',c)
-    else:
-        return HttpResponseRedirect('/login/invalidlogin')
-
-@login_required(login_url = '/login/')
-
-def movie(request):
+def movie(request): #view for showing showa and movie details...
     c = {}
     c.update(csrf(request))
     key = request.GET.get('key','')
