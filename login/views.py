@@ -41,6 +41,30 @@ def updateProfile(request): #view for inserting profile data in to databse...
                 return HttpResponseRedirect('/home/profile')
         else:
                 return HttpResponseRedirect('/login/invalidlogin')
+def updateCinemaProfile(request): #view for updating the cinema profile in databse...
+        c = {}
+        c.update(csrf(request))
+        name= request.POST.get('name','')
+        phone= request.POST.get('phone', '')
+        address= request.POST.get('address', '')
+        if request.user.is_authenticated:
+                id = request.user.id
+                user = User.objects.get(id = id)
+                if user is not None:
+                        username = user.username
+                        list2 = Cinema.objects.filter(cinema_id = username)
+                        count = list2.count()
+                        if int(count)>0:
+                                cUser = list2[0]
+                                cUser.cinema_name = name
+                                cUser.phoneno = phone
+                                cUser.address = address
+                                cUser.save()
+                        else:
+                                return render(request,'edit_cin.html',c)
+                return HttpResponseRedirect('/CinemaAdmin/profile')
+        else:
+                return HttpResponseRedirect('/login/invalidlogin')
 def updatePassword(request): #view to update the password in database...
 	c={}
 	c.update(csrf(request))
@@ -175,7 +199,9 @@ def cinstore(request): #view to store the new cinema profile in to the databse..
 	if form.is_valid():
 			profile= Cinema(cinema_id=username,cinema_name=name,email=email,phoneno=phone,password=password1,address=address,city=city)
 			profile.save()
+			offer = Offers(cinema_id=profile,offer_name="default",offer_details="default")
 			form.save()
+			offer.save()
 			username = form.cleaned_data.get('username')
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username=username, password=raw_password)

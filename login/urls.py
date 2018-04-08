@@ -16,4 +16,5 @@ urlpatterns = [
     path('updateProfile/',views.updateProfile),
     path('updatePassword/',views.update),
     path('updatePasswordCin/',views.updatePassword),
+    path('updateCinemaProfile/',views.updateCinemaProfile),
 ]

@@ -13,30 +13,31 @@ from django.contrib.auth.forms import PasswordChangeForm
 @login_required(login_url = '/login/')
 
 def home(request): #home admin panel for cinema admin...
-    c={}
-    if request.user.is_authenticated:
-        id = request.user.id
-        user = User.objects.get(id = id)
-        if user is not None:
-            cinema_id = user.username
-            request.session['cinema_id'] = cinema_id
-            movies = {}
-            mov = Movie.objects.filter(cinema_id = cinema_id)
-            offers = {}
-            off = Offers.objects.filter(cinema_id = cinema_id)
-    if mov is not None:
-        for i in mov:
-            movies[i.movie_name] = i.movie_details
-        c['movies'] = mov
-    if off is not None:
-        for j in off:
-            offers[j.offer_name] = j.offer_details
-        c['offers'] = offers
-    c.update(csrf(request))
-    if request.user.is_authenticated:
-        return render(request,'cinema-home.html',c)
-    else:
-        return HttpResponseRedirect('/login/invalidlogin')
+	c={}
+	if request.user.is_authenticated:
+		id = request.user.id
+		user = User.objects.get(id = id)
+		if user is not None:
+			cinema_id = user.username
+			request.session['cinema_id'] = cinema_id
+			movies = {}
+			mov = Movie.objects.filter(cinema_id = cinema_id)
+			offers = {}
+			off = Offers.objects.filter(cinema_id = cinema_id)
+	if mov is not None:
+		for i in mov:
+			movies[i.movie_name] = i.movie_details
+		c['movies'] = mov
+	if off is not None:
+		for j in off:
+			if j.offer_name!="default":
+				offers[j.offer_name] = j.offer_details
+		c['offers'] = offers
+	c.update(csrf(request))
+	if request.user.is_authenticated:
+		return render(request,'cinema-home.html',c)
+	else:
+		return HttpResponseRedirect('/login/invalidlogin')
 
 @login_required(login_url = '/login/')
 

@@ -99,17 +99,17 @@ to {
 					{% endfor %}
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your full name">
-						<input class="input100" type="text" name="name" value={{ cin_name }} placeholder="Full Name"> <span
+						<input class="input100" type="text" name="name" value={{ cin_name }} placeholder="Full Name" required> <span
 							class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your phone number">
-						<input class="input100" type="text" name="phone" value={{ phoneno }} placeholder="Phone no."> <span
+						<input class="input100" type="text" name="phone" value={{ phoneno }} placeholder="Phone no." required> <span
 							class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your address">
-						<textarea class="input100" name="address">{{ addr }}</textarea>
+						<textarea class="input100" name="address" required>{{ addr }}</textarea>
 						<span class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">

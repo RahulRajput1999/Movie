@@ -99,8 +99,8 @@ to {
 					{% endfor %}
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your full name">
-						<input class="input100" type="text" name="name" value={{ full_name }} placeholder="Full Name"> <span
-							class="focus-input100"></span>
+						<input class="input100" type="text" name="name" value={{ full_name }} placeholder="Full Name" required> 
+						<span class="focus-input100"></span>
 					</div>
 					<!--<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter tour E-Mail address">
 						<input class="input100" type="text" value={{ email }} name="email" placeholder="E-Mail">
@@ -108,12 +108,12 @@ to {
 					</div>-->
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your phone number">
-						<input class="input100" type="text" name="phone" value={{ phoneno }} placeholder="Phone no."> <span
+						<input class="input100" type="text" name="phone" value={{ phoneno }} placeholder="Phone no." required> <span
 							class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Please enter your date 0f birth">
-						<input class="input100" type="date" name="date" value={{ bdate }} placeholder="Date Of Birth"> <span
+						<input class="input100" type="date" name="date" value={{ bdate }} placeholder="Date Of Birth" required> <span
 							class="focus-input100"></span>
 					</div>
 					<div class="container-login100-form-btn">

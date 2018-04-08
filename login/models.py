@@ -50,7 +50,3 @@ class Show(models.Model):
 	seat=models.CharField(max_length=100)
 	price_ex=models.IntegerField()
 	price_pr=models.IntegerField()
-	
-class TicketOffer(models.Model):
-	ticket_id=models.ForeignKey('Ticket',on_delete='true')
-	offer_id=models.ForeignKey('Offers',on_delete='true')
